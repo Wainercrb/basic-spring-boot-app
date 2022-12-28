@@ -2,9 +2,7 @@ package com.crss.basicspringboot;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +32,6 @@ public class GradeController {
         } else {
             studentGrades.set(index, grade);
         }
-        System.out.print(studentGrades);
         return "redirect:/grades";
     }
 
