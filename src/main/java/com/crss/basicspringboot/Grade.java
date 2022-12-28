@@ -11,6 +11,7 @@ public class Grade {
     @NotBlank(message = "Subject cannot be blank")
     private String subject;
 
+    @Score(message = "Score must be a letter grade")
     private String score;
     private String id;
 
