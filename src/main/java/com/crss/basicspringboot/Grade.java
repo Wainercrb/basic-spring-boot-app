@@ -2,9 +2,15 @@ package com.crss.basicspringboot;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
 public class Grade {
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
+    @NotBlank(message = "Subject cannot be blank")
     private String subject;
+
     private String score;
     private String id;
 
