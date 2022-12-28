@@ -1,8 +1,8 @@
-package com.crss.basicspringboot;
+package com.crss.basicspringboot.model;
 
 import java.util.UUID;
-
 import javax.validation.constraints.NotBlank;
+import com.crss.basicspringboot.utils.customValidations.score.Score;
 
 public class Grade {
     @NotBlank(message = "Name cannot be blank")

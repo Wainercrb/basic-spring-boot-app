@@ -1,8 +1,8 @@
 package com.crss.basicspringboot.service;
 
 import java.util.List;
-import com.crss.basicspringboot.Constants;
-import com.crss.basicspringboot.Grade;
+import com.crss.basicspringboot.constants.Constants;
+import com.crss.basicspringboot.model.Grade;
 import com.crss.basicspringboot.repository.GradeRepository;
 
 public class GradeService {

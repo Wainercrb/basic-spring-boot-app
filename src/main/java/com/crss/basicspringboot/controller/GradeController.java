@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.crss.basicspringboot.Grade;
+import com.crss.basicspringboot.model.Grade;
 import com.crss.basicspringboot.service.GradeService;
 
 @Controller

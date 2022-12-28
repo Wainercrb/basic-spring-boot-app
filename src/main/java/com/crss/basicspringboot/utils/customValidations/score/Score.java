@@ -1,10 +1,9 @@
-package com.crss.basicspringboot;
+package com.crss.basicspringboot.utils.customValidations.score;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
@@ -13,6 +12,8 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ScoreValidator.class)
 public @interface Score {
    String message() default "Invalid Data";
+
    Class<?>[] groups() default {};
-   Class<? extends Payload>[] payload() default {}; 
+
+   Class<? extends Payload>[] payload() default {};
 }

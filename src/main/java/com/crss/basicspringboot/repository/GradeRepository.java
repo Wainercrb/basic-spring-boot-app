@@ -2,7 +2,7 @@ package com.crss.basicspringboot.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.crss.basicspringboot.Grade;
+import com.crss.basicspringboot.model.Grade;
 
 // Solely responsible for: [CREATE, UPDATE, DELETE, LIST]
 public class GradeRepository {
