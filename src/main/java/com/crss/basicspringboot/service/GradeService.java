@@ -1,12 +1,17 @@
 package com.crss.basicspringboot.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.crss.basicspringboot.constants.Constants;
 import com.crss.basicspringboot.model.Grade;
 import com.crss.basicspringboot.repository.GradeRepository;
 
+@Service
 public class GradeService {
-    GradeRepository gradeRepository = new GradeRepository();
+    
+    @Autowired
+    GradeRepository gradeRepository;
 
     public Grade getGrade(int idx) {
         return gradeRepository.getGrade(idx);
