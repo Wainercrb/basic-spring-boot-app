@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.crss.basicspringboot.entity.Contact;
 import com.crss.basicspringboot.exception.ContactNotFoundException;
-import com.crss.basicspringboot.model.Contact;
 import com.crss.basicspringboot.repository.ContactRepository;
 
 @Service

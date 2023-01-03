@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.crss.basicspringboot.entity.Contact;
 import com.crss.basicspringboot.exception.ErrorResponse;
-import com.crss.basicspringboot.model.Contact;
 import com.crss.basicspringboot.service.ContactService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

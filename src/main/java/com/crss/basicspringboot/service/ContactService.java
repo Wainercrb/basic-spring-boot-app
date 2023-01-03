@@ -1,7 +1,8 @@
 package com.crss.basicspringboot.service;
 
 import java.util.List;
-import com.crss.basicspringboot.model.Contact;
+
+import com.crss.basicspringboot.entity.Contact;
 
 public interface ContactService {
     Contact getContactById(String id);

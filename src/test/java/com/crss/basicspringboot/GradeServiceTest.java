@@ -12,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import com.crss.basicspringboot.constants.Constants;
-import com.crss.basicspringboot.model.Grade;
+import com.crss.basicspringboot.entity.Grade;
 import com.crss.basicspringboot.repository.GradeRepository;
 import com.crss.basicspringboot.service.GradeService;
 

@@ -1,4 +1,4 @@
-package com.crss.basicspringboot.model;
+package com.crss.basicspringboot.entity;
 
 import java.util.UUID;
 import javax.validation.constraints.NotBlank;

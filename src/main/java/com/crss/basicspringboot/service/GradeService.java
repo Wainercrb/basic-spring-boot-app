@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.crss.basicspringboot.constants.Constants;
-import com.crss.basicspringboot.model.Grade;
+import com.crss.basicspringboot.entity.Grade;
 import com.crss.basicspringboot.repository.GradeRepository;
 
 @Service

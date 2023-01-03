@@ -11,3 +11,8 @@
 
 ## Bad practices:
 - Never create a dependency inside other dependent class, it's imposable to unit test
+
+## Important packages!
+- H2 Database
+- JPA
+- Lombok

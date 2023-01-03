@@ -3,7 +3,8 @@ package com.crss.basicspringboot.repository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import com.crss.basicspringboot.model.Grade;
+
+import com.crss.basicspringboot.entity.Grade;
 
 // Solely responsible for: [CREATE, UPDATE, DELETE, LIST]
 @Repository
