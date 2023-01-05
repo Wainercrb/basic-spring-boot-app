@@ -4,54 +4,38 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import com.crss.basicspringboot.security.filter.AuthenticationFilter;
+import com.crss.basicspringboot.security.filter.ExceptionHandlerFilter;
+import com.crss.basicspringboot.security.filter.JWTAuthorizationFilter;
+import com.crss.basicspringboot.security.manager.CustomAuthenticationManager;
 import lombok.AllArgsConstructor;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
-    private BCryptPasswordEncoder passwordEncoder;
+
+    private final CustomAuthenticationManager customAuthenticationManager;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST).hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.GET).permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // handle auth for each
-                                                                                             // request
-
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
+        authenticationFilter.setFilterProcessesUrl("/authenticate");
+        http        
+            .headers().frameOptions().disable() // New Line: the h2 console runs on a "frame". By default, Spring Security prevents rendering within an iframe. This line disables its prevention.
+            .and()
+            .csrf().disable()
+            .authorizeRequests()  
+            .antMatchers("/h2/**").permitAll() // New Line: allows us to access the h2 console without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /h2.
+            .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll() // Allow only register new users
+            .anyRequest().authenticated() // block others requests
+            .and()
+            .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
+            .addFilter(authenticationFilter)
+            .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }
-
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User
-                .builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user = User
-                .builder()
-                .username("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+    
 }

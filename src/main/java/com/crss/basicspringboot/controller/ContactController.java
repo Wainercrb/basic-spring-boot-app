@@ -1,9 +1,7 @@
 package com.crss.basicspringboot.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.crss.basicspringboot.entity.Contact;
 import com.crss.basicspringboot.exception.ErrorResponse;
 import com.crss.basicspringboot.service.ContactService;
@@ -42,6 +39,7 @@ public class ContactController {
             @ApiResponse(responseCode = "404", description = "Contact doesn't exist", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "200", description = "Successful retrieval of contact", content = @Content(schema = @Schema(implementation = Contact.class))),
     })
+
     @GetMapping(value = "/contact/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Contact> getContact(@PathVariable String id) {
         Contact contact = contactService.getContactById(id);
@@ -53,10 +51,10 @@ public class ContactController {
             @ApiResponse(responseCode = "201", description = "Successful creation of contact"),
             @ApiResponse(responseCode = "400", description = "Bad request: unsuccessful update", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
+
     @PostMapping(value = "/contact", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact) {
         contactService.saveContact(contact);
         return new ResponseEntity<>(contact, HttpStatus.CREATED);
     }
-
 }
