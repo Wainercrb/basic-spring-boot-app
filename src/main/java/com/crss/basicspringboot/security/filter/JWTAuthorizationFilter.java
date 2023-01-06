@@ -22,7 +22,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith(SecurityConstants.BEARER)) {
-            filterChain.doFilter(request, response);
+            filterChain.doFilter(request, response); // Trigger the next filter
             return;
         }
 
@@ -34,6 +34,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, Arrays.asList());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(request, response); // Trigger the next filter
     }
 }

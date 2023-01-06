@@ -31,7 +31,7 @@ public class SecurityConfig {
             .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll() // Allow only register new users
             .anyRequest().authenticated() // block others requests
             .and()
-            .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
+            .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class) // validate the payload before validation
             .addFilter(authenticationFilter)
             .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

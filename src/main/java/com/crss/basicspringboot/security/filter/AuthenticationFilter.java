@@ -29,11 +29,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
         try {
-            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            User user = new ObjectMapper().readValue(request.getInputStream(), User.class); // get user from request
             Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(),
                     user.getPassword());
             return authenticationManager.authenticate(authentication);
-        } catch (IOException e) {
+        } catch (IOException e) { // handle exception if request does not contains username or pass
             throw new RuntimeException();
         }
     }
